@@ -4,9 +4,10 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def criar_driver(headless: bool = False):
+def criar_driver(headless=False):
     options = Options()
 
+    # flags necessarias pra rodar no ubuntu do github actions
     if headless:
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
@@ -17,17 +18,12 @@ def criar_driver(headless: bool = False):
     options.add_argument("--start-maximized")
     options.add_argument("--disable-notifications")
     options.add_argument("--disable-popup-blocking")
-    options.add_argument("--disable-features=PasswordLeakDetection,AutofillServerCommunication")
-    options.add_argument("--disable-save-password-bubble")
 
     prefs = {
         "credentials_enable_service": False,
         "profile.password_manager_enabled": False,
-        "profile.password_manager_leak_detection": False,
-        "autofill.profile_enabled": False,
     }
     options.add_experimental_option("prefs", prefs)
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)

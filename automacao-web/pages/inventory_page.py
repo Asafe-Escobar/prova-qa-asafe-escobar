@@ -12,15 +12,15 @@ class InventoryPage(BasePage):
     ICONE_CARRINHO = (By.CLASS_NAME, "shopping_cart_link")
     QUANTIDADE_CARRINHO = (By.CLASS_NAME, "shopping_cart_badge")
 
-    def _botao_adicionar(self, nome_produto: str):
+    def _botao_adicionar(self, nome_produto):
         produto_id = nome_produto.lower().replace(" ", "-")
         return (By.ID, f"add-to-cart-{produto_id}")
 
-    def _botao_remover(self, nome_produto: str):
+    def _botao_remover(self, nome_produto):
         produto_id = nome_produto.lower().replace(" ", "-")
         return (By.ID, f"remove-{produto_id}")
 
-    def adicionar_ao_carrinho(self, nome_produto: str):
+    def adicionar_ao_carrinho(self, nome_produto):
         try:
             self.clicar(self._botao_adicionar(nome_produto))
         except WebDriverException:
@@ -29,16 +29,15 @@ class InventoryPage(BasePage):
             )
         return self
 
-    def remover_do_carrinho(self, nome_produto: str):
+    def remover_do_carrinho(self, nome_produto):
         try:
             self.clicar(self._botao_remover(nome_produto))
         except WebDriverException:
             self.driver.execute_script(
                 f"document.getElementById('remove-{nome_produto.lower().replace(' ', '-')}').click();"
             )
-        return self
 
-    def quantidade_no_carrinho(self) -> int:
+    def quantidade_no_carrinho(self):
         if not self.esta_visivel(self.QUANTIDADE_CARRINHO):
             return 0
         return int(self.texto_de(self.QUANTIDADE_CARRINHO))
@@ -48,7 +47,6 @@ class InventoryPage(BasePage):
             self.clicar(self.ICONE_CARRINHO)
         except WebDriverException:
             self.driver.get(self.URL_CARRINHO)
-        return self
 
-    def obter_titulo(self) -> str:
+    def obter_titulo(self):
         return self.texto_de(self.TITULO_PAGINA)

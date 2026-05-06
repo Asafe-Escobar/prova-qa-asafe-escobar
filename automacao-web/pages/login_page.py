@@ -15,11 +15,11 @@ class LoginPage(BasePage):
         self.abrir(self.URL)
         return self
 
-    def fazer_login(self, usuario: str, senha: str):
+    def fazer_login(self, usuario, senha):
         self.digitar(self.CAMPO_USUARIO, usuario)
         self.digitar(self.CAMPO_SENHA, senha)
         self.clicar(self.BOTAO_LOGIN)
         return self
 
-    def obter_mensagem_de_erro(self) -> str:
+    def obter_mensagem_de_erro(self):
         return self.texto_de(self.MENSAGEM_ERRO)

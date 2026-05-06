@@ -1,6 +1,6 @@
 # Automação de Testes de API - Swagger Petstore
 
-[![CI - Testes de API Petstore](https://github.com/Asafe-Escobar/prova-qa-api-petstore/actions/workflows/ci.yml/badge.svg)](https://github.com/Asafe-Escobar/prova-qa-api-petstore/actions/workflows/ci.yml)
+[![CI - Testes de API Petstore](https://github.com/Asafe-Escobar/prova-qa-asafe-escobar/actions/workflows/ci-api.yml/badge.svg)](https://github.com/Asafe-Escobar/prova-qa-asafe-escobar/actions/workflows/ci-api.yml)
 
 Projeto de automação de testes para a API pública [Swagger Petstore](https://petstore.swagger.io/), desenvolvido como parte da avaliação da disciplina de Qualidade de Software.
 
@@ -11,15 +11,12 @@ A suíte cobre os três grupos principais de endpoints (**Pet**, **Store** e **U
 - Python 3.12+
 - pytest — framework de testes
 - requests — cliente HTTP
-- jsonschema — validação de estruturas JSON
 - GitHub Actions — pipeline CI/CD
 
 ## Estrutura do Projeto
 
-​```
-prova-qa-api-petstore/
-├── .github/workflows/
-│   └── ci.yml
+```
+automacao-api/
 ├── tests/
 │   ├── test_pet.py
 │   ├── test_store.py
@@ -31,7 +28,7 @@ prova-qa-api-petstore/
 ├── conftest.py
 ├── pytest.ini
 └── requirements.txt
-​```
+```
 
 ## Pré-requisitos
 
@@ -42,43 +39,43 @@ prova-qa-api-petstore/
 
 Clone o repositório:
 
-​```bash
-git clone https://github.com/Asafe-Escobar/prova-qa-api-petstore.git
-cd prova-qa-api-petstore
-​```
+```bash
+git clone https://github.com/Asafe-Escobar/prova-qa-asafe-escobar.git
+cd prova-qa-asafe-escobar/automacao-api
+```
 
 Crie e ative um ambiente virtual:
 
-​```bash
+```bash
 python -m venv venv
 .\venv\Scripts\Activate.ps1
-​```
+```
 
 Instale as dependências:
 
-​```bash
+```bash
 python -m pip install -r requirements.txt
-​```
+```
 
 ## Execução dos Testes
 
 Rodar a suíte completa:
 
-​```bash
+```bash
 pytest
-​```
+```
 
 Rodar apenas um arquivo:
 
-​```bash
+```bash
 pytest tests/test_pet.py
-​```
+```
 
 Rodar um teste específico:
 
-​```bash
-pytest tests/test_user.py::TestUser::test_login_com_credenciais_validas_retorna_200
-​```
+```bash
+pytest tests/test_user.py::TestUser::test_login
+```
 
 ## Cobertura de Testes
 
@@ -115,8 +112,8 @@ pytest tests/test_user.py::TestUser::test_login_com_credenciais_validas_retorna_
 
 ## Pipeline CI/CD
 
-A pipeline configurada em `.github/workflows/ci.yml` é executada automaticamente em:
-- push na branch `main`
+A pipeline configurada em `.github/workflows/ci-api.yml` é executada automaticamente em:
+- push na branch `main` (apenas quando arquivos de `automacao-api/` mudam)
 - Pull Requests para a `main`
 - Manualmente via aba Actions do GitHub
 

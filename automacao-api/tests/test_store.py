@@ -15,7 +15,7 @@ class TestStore:
         assert corpo["status"] == "placed"
         assert corpo["complete"] is True
 
-    def test_buscar(self, api):
+    def test_buscar_pedido_existente_retorna_dados_corretos(self, api):
         payload = novo_pedido()
         api.post("/store/order", payload=payload)
 
@@ -34,7 +34,7 @@ class TestStore:
 
         assert resposta.status_code == 200
 
-    def test_buscar(self, api):
+    def test_buscar_pedido_inexistente_retorna_404(self, api):
         id_inexistente = gerar_id_unico()
 
         resposta = api.get(f"/store/order/{id_inexistente}")

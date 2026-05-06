@@ -18,6 +18,7 @@ def criar_driver(headless=False):
     options.add_argument("--start-maximized")
     options.add_argument("--disable-notifications")
     options.add_argument("--disable-popup-blocking")
+    options.add_argument("--disable-save-password-bubble")
 
     prefs = {
         "credentials_enable_service": False,

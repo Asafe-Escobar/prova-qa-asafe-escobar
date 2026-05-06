@@ -3,7 +3,7 @@
 [![CI - Testes de API Petstore](https://github.com/Asafe-Escobar/prova-qa-asafe-escobar/actions/workflows/ci-api.yml/badge.svg)](https://github.com/Asafe-Escobar/prova-qa-asafe-escobar/actions/workflows/ci-api.yml)
 [![CI - Testes Web SauceDemo](https://github.com/Asafe-Escobar/prova-qa-asafe-escobar/actions/workflows/ci-web.yml/badge.svg)](https://github.com/Asafe-Escobar/prova-qa-asafe-escobar/actions/workflows/ci-web.yml)
 
-Repositório consolidado com os dois projetos de automação de testes desenvolvidos para a avaliação da disciplina de Qualidade de Software.
+Repositório com os dois projetos de automação de testes desenvolvidos para a avaliação da disciplina de Qualidade de Software.
 
 ## Visão Geral
 
@@ -24,12 +24,12 @@ Este repositório contém **dois projetos independentes**, cada um em sua própr
 
 ## Estrutura do Repositório
 
-​```
+```
 prova-qa-asafe-escobar/
 ├── .github/workflows/
-│   ├── ci-api.yml              # Pipeline da automação de API
-│   └── ci-web.yml              # Pipeline da automação Web
-├── automacao-api/              # Projeto de API
+│   ├── ci-api.yml
+│   └── ci-web.yml
+├── automacao-api/
 │   ├── tests/
 │   ├── utils/
 │   ├── config.py
@@ -37,7 +37,7 @@ prova-qa-asafe-escobar/
 │   ├── pytest.ini
 │   ├── requirements.txt
 │   └── README.md
-├── automacao-web/              # Projeto Web
+├── automacao-web/
 │   ├── pages/
 │   ├── tests/
 │   ├── utils/
@@ -46,12 +46,10 @@ prova-qa-asafe-escobar/
 │   ├── requirements.txt
 │   └── README.md
 ├── .gitignore
-└── README.md                   # Este arquivo
-​```
+└── README.md
+```
 
 ## Como Executar
-
-Cada projeto tem suas próprias dependências e instruções detalhadas em seu README específico. As instruções abaixo são um resumo.
 
 ### Pré-requisitos
 
@@ -61,27 +59,55 @@ Cada projeto tem suas próprias dependências e instruções detalhadas em seu R
 
 ### Projeto de API
 
-​```bash
+Clone o repositório e entre na pasta:
+
+```bash
+git clone https://github.com/Asafe-Escobar/prova-qa-asafe-escobar.git
+cd prova-qa-asafe-escobar
 cd automacao-api
+```
+
+Crie e ative o ambiente virtual:
+
+```bash
 python -m venv venv
 .\venv\Scripts\Activate.ps1
+```
+
+Instale as dependências e rode os testes:
+
+```bash
 python -m pip install -r requirements.txt
 pytest
-​```
-
-Mais detalhes em [`automacao-api/README.md`](./automacao-api/README.md).
+```
 
 ### Projeto Web
 
-​```bash
+Entre na pasta do projeto web:
+
+```bash
 cd automacao-web
+```
+
+Crie e ative o ambiente virtual:
+
+```bash
 python -m venv venv
 .\venv\Scripts\Activate.ps1
+```
+
+Instale as dependências e rode os testes:
+
+```bash
 python -m pip install -r requirements.txt
 pytest
-​```
+```
 
-Mais detalhes em [`automacao-web/README.md`](./automacao-web/README.md).
+Para rodar em modo headless (sem abrir o navegador):
+
+```bash
+$env:HEADLESS="true"; pytest
+```
 
 ## Cobertura de Testes
 
@@ -122,11 +148,7 @@ Mais detalhes em [`automacao-web/README.md`](./automacao-web/README.md).
 - Page Object Model (POM) — cada página vira uma classe
 - Herança via BasePage — métodos comuns centralizados
 - Encapsulamento de locators dentro das Page Objects
-- Method chaining — métodos retornam `self` permitindo encadeamento
 - Configuração baseada em ambiente — variável `HEADLESS` controla modo visual vs invisível
-- Estratégia anti-flakiness — espera explícita, scroll automático e fallback de JavaScript click
-- Limpeza de estado — cookies e localStorage limpos antes de cada login
-- Desabilitação de interferências do navegador — gerenciador de senhas, autofill e popups bloqueados
 
 ## Pipelines CI/CD
 
@@ -139,8 +161,6 @@ Ambas são acionadas em:
 - `push` na branch `main` (apenas quando arquivos do respectivo projeto mudam)
 - Pull Requests para a `main`
 - Manualmente via aba **Actions** do GitHub
-
-> Os filtros de `paths` evitam execuções desnecessárias: alterações na pasta `automacao-api/` só disparam a pipeline da API, e o mesmo vale para a Web.
 
 ## Evidências de Execução
 

@@ -142,6 +142,14 @@ Ambas são acionadas em:
 
 > Os filtros de `paths` evitam execuções desnecessárias: alterações na pasta `automacao-api/` só disparam a pipeline da API, e o mesmo vale para a Web.
 
+## Evidências de Execução
+
+### Repositório no GitHub
+![Repositório](print-repositorio.png)
+
+### Pipelines CI/CD verdes
+![Pipelines verdes](print-pipelines-verdes.png)
+
 ## Autor
 
 Projeto desenvolvido por **Asafe Escobar** para a disciplina de Qualidade de Software.

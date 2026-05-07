@@ -44,6 +44,3 @@ class BasePage:
             return True
         except Exception:
             return False
-
-    def aguardar_url_conter(self, fragmento):
-        self.wait.until(EC.url_contains(fragmento))

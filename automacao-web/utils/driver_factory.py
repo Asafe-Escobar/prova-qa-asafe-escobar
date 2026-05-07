@@ -19,6 +19,5 @@ def criar_driver(headless=False):
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=options)
-    driver.implicitly_wait(10)
 
     return driver

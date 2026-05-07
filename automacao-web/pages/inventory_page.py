@@ -27,6 +27,8 @@ class InventoryPage(BasePage):
             self.driver.execute_script(
                 f"document.getElementById('add-to-cart-{nome_produto.lower().replace(' ', '-')}').click();"
             )
+        # aguarda o botao mudar para "Remove", confirmando que o item foi adicionado
+        self.encontrar(self._botao_remover(nome_produto))
         return self
 
     def remover_do_carrinho(self, nome_produto):
@@ -36,6 +38,8 @@ class InventoryPage(BasePage):
             self.driver.execute_script(
                 f"document.getElementById('remove-{nome_produto.lower().replace(' ', '-')}').click();"
             )
+        # aguarda o botao voltar para "Add to cart", confirmando que o item foi removido
+        self.encontrar(self._botao_adicionar(nome_produto))
 
     def quantidade_no_carrinho(self):
         if not self.esta_visivel(self.QUANTIDADE_CARRINHO):
@@ -47,6 +51,7 @@ class InventoryPage(BasePage):
             self.clicar(self.ICONE_CARRINHO)
         except WebDriverException:
             self.driver.get(self.URL_CARRINHO)
+        self.aguardar_url_conter("cart")
 
     def obter_titulo(self):
         return self.texto_de(self.TITULO_PAGINA)

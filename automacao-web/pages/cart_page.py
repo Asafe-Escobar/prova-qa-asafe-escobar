@@ -23,3 +23,4 @@ class CartPage(BasePage):
             self.clicar(self.BOTAO_CHECKOUT)
         except WebDriverException:
             self.driver.get(self.URL_CHECKOUT)
+        self.aguardar_url_conter("checkout")
